@@ -1,0 +1,24 @@
+{
+  "vendas": [
+    { "id": 1, "sellerId": 101, "isPayed": true,  "value": 150.5,  "date": "2024-06-01", "payerId": 201 },
+    { "id": 2, "sellerId": 102, "isPayed": false, "value": 320.0,  "date": "2024-06-02", "payerId": 202 },
+    { "id": 3, "sellerId": 103, "isPayed": true,  "value": 75.25,  "date": "2024-06-03", "payerId": 203 },
+    { "id": 4, "sellerId": 104, "isPayed": true,  "value": 210.0,  "date": "2024-06-04", "payerId": 204 },
+    { "id": 5, "sellerId": 105, "isPayed": false, "value": 99.99,  "date": "2024-06-05", "payerId": 205 },
+    { "id": 6, "sellerId": 106, "isPayed": true,  "value": 450.75, "date": "2024-06-06", "payerId": 206 },
+    { "id": 7, "sellerId": 107, "isPayed": false, "value": 120.0,  "date": "2024-06-07", "payerId": 207 },
+    { "id": 8, "sellerId": 108, "isPayed": true,  "value": 310.5,  "date": "2024-06-08", "payerId": 208 },
+    { "id": 9, "sellerId": 109, "isPayed": true,  "value": 60.0,   "date": "2024-06-09", "payerId": 209 },
+    { "id": 10,"sellerId": 110, "isPayed": false, "value": 500.0,  "date": "2024-06-10", "payerId": 210 },
+    { "id": 11,"sellerId": 101, "isPayed": true,  "value": 135.75, "date": "2024-06-11", "payerId": 211 },
+    { "id": 12,"sellerId": 102, "isPayed": false, "value": 220.0,  "date": "2024-06-12", "payerId": 212 },
+    { "id": 13,"sellerId": 103, "isPayed": true,  "value": 180.2,  "date": "2024-06-13", "payerId": 213 },
+    { "id": 14,"sellerId": 104, "isPayed": false, "value": 299.9,  "date": "2024-06-14", "payerId": 214 },
+    { "id": 15,"sellerId": 105, "isPayed": true,  "value": 410.6,  "date": "2024-06-15", "payerId": 215 },
+    { "id": 16,"sellerId": 106, "isPayed": false, "value": 195.0,  "date": "2024-06-16", "payerId": 216 },
+    { "id": 17,"sellerId": 107, "isPayed": true,  "value": 250.0,  "date": "2024-06-17", "payerId": 217 },
+    { "id": 18,"sellerId": 108, "isPayed": false, "value": 85.75,  "date": "2024-06-18", "payerId": 218 },
+    { "id": 19,"sellerId": 109, "isPayed": true,  "value": 135.0,  "date": "2024-06-19", "payerId": 219 },
+    { "id": 20,"sellerId": 110, "isPayed": false, "value": 99.5,   "date": "2024-06-20", "payerId": 220 }
+  ]
+}
