@@ -2,6 +2,7 @@
   "name": "vendas",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://iarleym.github.io/SPA-vendas",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
@@ -10,6 +11,7 @@
     "@unform/core": "^2.1.6",
     "@unform/web": "^2.1.6",
     "axios": "^1.10.0",
+    "gh-pages": "^6.3.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.60.0",
@@ -36,7 +38,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "mock": "json-server --watch ./mock/db.json --port 3003"
+    "mock": "json-server --watch ./mock/db.json --port 3003",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
