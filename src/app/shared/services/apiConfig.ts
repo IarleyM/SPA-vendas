@@ -1,8 +1,9 @@
 
 import axios from 'axios';
+import { Environment } from '../environment';
 
 export const Api = () => {
     return axios.create({
-        baseURL: "http://localhost:3003",
+        baseURL: Environment.URL_BASE,
     });
 };

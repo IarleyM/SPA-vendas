@@ -18,7 +18,7 @@ export const SideBar: React.FC<SideBarProps> = ({ children }) => {
             {smDown && (
                 <Box position="fixed" top={0} left={0} zIndex={1301} p={1}>
                     <IconButton onClick={toggleDrawerOpen} color="inherit">
-                        <MenuIcon/>
+                        <MenuIcon />
                     </IconButton>
                 </Box>
             )}
@@ -38,11 +38,11 @@ export const SideBar: React.FC<SideBarProps> = ({ children }) => {
                     <Button sx={{ width: 110, height: 30 }} variant="contained" href="/painel-vendas">
                         Vendas
                     </Button>
-                    <Button sx={{ width: 110, height: 30 }} variant="contained" href="https://www.xvideos.com/">
+                    <Button sx={{ width: 110, height: 30 }} variant="contained" href="/painel-vendedor">
                         Vendedor
                     </Button>
-                    <Button sx={{ width: 110, height: 30 }} variant="contained" href="https://www.xvideos.com/">
-                        Comprador
+                    <Button sx={{ width: 110, height: 30 }} variant="contained" href="/painel-produtos">
+                        Produtos
                     </Button>
                 </Box>
             </Drawer>
