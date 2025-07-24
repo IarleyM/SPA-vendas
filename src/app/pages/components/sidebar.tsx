@@ -2,6 +2,8 @@ import { Button, Drawer, Icon, IconButton, Paper, useTheme } from "@mui/material
 import { Box, useMediaQuery } from "@mui/system"
 import { useDrawerContext } from "../../shared/context";
 import MenuIcon from '@mui/icons-material/Menu';
+import { Link as RouterLink } from 'react-router-dom';
+
 
 interface SideBarProps {
     children?: React.ReactNode;
@@ -35,15 +37,33 @@ export const SideBar: React.FC<SideBarProps> = ({ children }) => {
                     padding={theme.spacing(2)}
                     color={theme.palette.primary.main}
                 >
-                    <Button sx={{ width: 110, height: 30 }} variant="contained" href="/painel-vendas">
+                    <Button
+                        component={RouterLink}
+                        to="/painel-vendas"
+                        sx={{ width: 110, height: 30 }}
+                        variant="contained"
+                    >
                         Vendas
                     </Button>
-                    <Button sx={{ width: 110, height: 30 }} variant="contained" href="/painel-vendedor">
+
+                    <Button
+                        component={RouterLink}
+                        to="/painel-vendedor"
+                        sx={{ width: 110, height: 30 }}
+                        variant="contained"
+                    >
                         Vendedor
                     </Button>
-                    <Button sx={{ width: 110, height: 30 }} variant="contained" href="/painel-produtos">
+
+                    <Button
+                        component={RouterLink}
+                        to="/painel-produtos"
+                        sx={{ width: 110, height: 30 }}
+                        variant="contained"
+                    >
                         Produtos
                     </Button>
+
                 </Box>
             </Drawer>
 
