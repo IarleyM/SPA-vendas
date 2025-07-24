@@ -40,7 +40,7 @@
     "eject": "react-scripts eject",
     "mock": "json-server --watch ./mock/db.json --port 3003",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build -r https://github.com/IarleyM/SPA-vendas.git"
+  "deploy": "gh-pages -d build -r https://iarleym.github.io/SPA-vendas"
   },
   "eslintConfig": {
     "extends": [
