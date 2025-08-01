@@ -12,10 +12,6 @@ export const PainelProdutos = () => {
     const navigate = useNavigate();
     const [SearchParams] = useSearchParams();
 
-    const busca = useMemo(() => {
-        return SearchParams.get('busca') || '';
-    }, [SearchParams]);
-
     useEffect(() => {
         ProdutosServices.getAll()
             .then((response) => {
