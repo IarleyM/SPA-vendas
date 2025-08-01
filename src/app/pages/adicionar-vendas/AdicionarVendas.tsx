@@ -82,7 +82,6 @@ export const AdicionarVendas = () => {
             itemSells
         };
         
-        console.log("Venda",venda)
         const response = await create(venda);
 
         if (response instanceof ApiException) {

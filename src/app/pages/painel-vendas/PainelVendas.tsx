@@ -7,6 +7,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
 import { IPagadores, PagadorServices } from "../../shared/services/pagadores/Pagadores";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export const PainelVendas = () => {
     const theme = useTheme();
@@ -88,6 +89,18 @@ export const PainelVendas = () => {
         }
     }
 
+    const hangleDeleteSell = (id: number) => {
+        if (window.confirm("Tem certeza que deseja deletar esta venda?")) {
+            VendasServices.remove(id).then((res) => {      
+                if (res instanceof ApiException) {
+                    alert(res.message);
+                }   
+                else {  
+                    setRows(rows.filter(row => row.sellId !== id));
+                }
+            })
+        }
+    }
         return (
             <div>
                 <LayoutBase Title="Painel de Vendas">
@@ -157,6 +170,10 @@ export const PainelVendas = () => {
                                                 </IconButton>
                                                 <IconButton
                                                     onClick={() => hangleConfirmSell(row.sellId)}>
+                                                    <DeleteIcon />
+                                                </IconButton>
+                                                <IconButton
+                                                    onClick={() => hangleDeleteSell(row.sellId)}>
                                                     <AddIcon />
                                                 </IconButton>
                                             </TableCell>
