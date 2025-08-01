@@ -11,7 +11,7 @@ export const PainelVendedor = () => {
     const [vendedor, setVendedor] = useState<IVendedor[]>([])
     const navigate = useNavigate()
 
-    const [SearchParams, setSearchParams] = useSearchParams()
+    const [SearchParams] = useSearchParams()
 
     useEffect(() => {
         VendedorServices.getAll()
@@ -37,7 +37,7 @@ export const PainelVendedor = () => {
                         display="flex" flexDirection="column" gap={1} marginBottom={1} width={1}>
                         <Input placeholder="Vendedor" sx={{ width: 150, height: 30 }}
                             onChange={(e) => {
-                                setSearchParams({ busca: e.target.value }, { replace: true });
+                                SearchParams.set( 'busca', e.target.value );
                             }} />
                     </Box>
                     <Button variant="contained" sx={{ width: 160, height: 30 }}>
