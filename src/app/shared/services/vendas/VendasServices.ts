@@ -56,7 +56,7 @@ const create = async (dataToCreate: Omit<IRequestCreateVenda, 'id'>): Promise<IR
 
 const update = async (id: number, dataToUpdate: IVendas ): Promise <IVendas | ApiException> => {
     try {
-        const { data } = await Api().put(`/sells/${id}`, dataToUpdate);
+        const { data } = await Api().put(`/confirm/${id}`, dataToUpdate);
         return data;
     } catch (error) {
         return new ApiException(`Erro ao atualizar venda com ID ${id}`);

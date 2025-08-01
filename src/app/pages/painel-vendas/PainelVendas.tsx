@@ -84,86 +84,92 @@ export const PainelVendas = () => {
         return encontrado.name;
     };
 
-    return (
-        <div>
-            <LayoutBase Title="Painel de Vendas">
-                <Box
-                    component={Paper}
-                    display="flex"
-                    justifyContent="space-between"
-                    alignItems="center"
-                    padding={theme.spacing(2.5)}>
+    const hangleConfirmSell = (id: number) => {
+        if (window.confirm("Tem certeza que deseja confirmar esta venda?")) {
+            VendasServices.update(id, { isPayed: true } as IVendas)
+        }
+    }
+
+        return (
+            <div>
+                <LayoutBase Title="Painel de Vendas">
                     <Box
-                        display="flex" flexDirection="column" gap={1} marginBottom={1} width={1}>
-                        <Input
-                            placeholder="Pagador"
-                            sx={{ width: 150, height: 30 }}
-                            value={pagadorBusca}
-                            onChange={(e) => {
-                                const value = e.target.value;
-                                const newParams = new URLSearchParams(SearchParams);
-                                newParams.set('pagador', value);
-                                setSearchParams(newParams, { replace: true });
-                            }}
-                        />
-                        <Button
-                            variant="contained"
-                            sx={{ width: 160, height: 30 }}
-                            onClick={() => navigate("/adicionar-vendas")}
-                        >
-                            Nova Venda
-                        </Button>
+                        component={Paper}
+                        display="flex"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        padding={theme.spacing(2.5)}>
+                        <Box
+                            display="flex" flexDirection="column" gap={1} marginBottom={1} width={1}>
+                            <Input
+                                placeholder="Pagador"
+                                sx={{ width: 150, height: 30 }}
+                                value={pagadorBusca}
+                                onChange={(e) => {
+                                    const value = e.target.value;
+                                    const newParams = new URLSearchParams(SearchParams);
+                                    newParams.set('pagador', value);
+                                    setSearchParams(newParams, { replace: true });
+                                }}
+                            />
+                            <Button
+                                variant="contained"
+                                sx={{ width: 160, height: 30 }}
+                                onClick={() => navigate("/adicionar-vendas")}
+                            >
+                                Nova Venda
+                            </Button>
+                        </Box>
                     </Box>
-                </Box>
 
-                <TableContainer>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Id da Venda</TableCell>
-                                <TableCell>Pagador</TableCell>
-                                <TableCell>Pago</TableCell>
-                                <TableCell>Valor Total</TableCell>
-                                <TableCell>Data</TableCell>
-                                <TableCell>Ações</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {isLoading ? (
-                                // Esqueleto com 5 linhas, cada uma com 6 células
-                                Array.from({ length: 5 }).map((_, rowIndex) => (
-                                    <TableRow key={rowIndex}>
-                                        {Array.from({ length: 6 }).map((_, cellIndex) => (
-                                            <TableCell key={cellIndex}>
-                                                <Skeleton variant="rectangular" width="100%" />
+                    <TableContainer>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>Id da Venda</TableCell>
+                                    <TableCell>Pagador</TableCell>
+                                    <TableCell>Pago</TableCell>
+                                    <TableCell>Valor Total</TableCell>
+                                    <TableCell>Data</TableCell>
+                                    <TableCell>Ações</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {isLoading ? (
+                                    Array.from({ length: 5 }).map((_, rowIndex) => (
+                                        <TableRow key={rowIndex}>
+                                            {Array.from({ length: 6 }).map((_, cellIndex) => (
+                                                <TableCell key={cellIndex}>
+                                                    <Skeleton variant="rectangular" width="100%" />
+                                                </TableCell>
+                                            ))}
+                                        </TableRow>
+                                    ))
+                                ) : (
+                                    rows.map((row) => (
+                                        <TableRow key={row.sellId}>
+                                            <TableCell>{row.sellId}</TableCell>
+                                            <TableCell>{payerName(row.payerId)}</TableCell>
+                                            <TableCell>{row.isPayed ? "Sim" : "Não"}</TableCell>
+                                            <TableCell>{row.value}</TableCell>
+                                            <TableCell>{new Date(row.date).toLocaleDateString()}</TableCell>
+                                            <TableCell>
+                                                <IconButton onClick={() => navigate(`/detalhes-vendas/${row.sellId}`)}>
+                                                    <EditIcon />
+                                                </IconButton>
+                                                <IconButton
+                                                    onClick={() => hangleConfirmSell(row.sellId)}>
+                                                    <AddIcon />
+                                                </IconButton>
                                             </TableCell>
-                                        ))}
-                                    </TableRow>
-                                ))
-                            ) : (
-                                rows.map((row) => (
-                                    <TableRow key={row.sellId}>
-                                        <TableCell>{row.sellId}</TableCell>
-                                        <TableCell>{payerName(row.payerId)}</TableCell>
-                                        <TableCell>{row.isPayed ? "Sim" : "Não"}</TableCell>
-                                        <TableCell>{row.value}</TableCell>
-                                        <TableCell>{new Date(row.date).toLocaleDateString()}</TableCell>
-                                        <TableCell>
-                                            <IconButton onClick={() => navigate(`/detalhes-vendas/${row.sellId}`)}>
-                                                <EditIcon />
-                                            </IconButton>
-                                            <IconButton>
-                                                <AddIcon />
-                                            </IconButton>
-                                        </TableCell>
-                                    </TableRow>
-                                ))
-                            )}
-                        </TableBody>
+                                        </TableRow>
+                                    ))
+                                )}
+                            </TableBody>
 
-                    </Table>
-                </TableContainer>
-            </LayoutBase>
-        </div>
-    )
-}
+                        </Table>
+                    </TableContainer>
+                </LayoutBase>
+            </div>
+        )
+    }
