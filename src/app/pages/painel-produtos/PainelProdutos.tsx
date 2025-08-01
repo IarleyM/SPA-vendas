@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { ApiException } from "../../shared/services/ApiException";
-import { Input, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Box, Button, Paper, useTheme, Icon } from "@mui/material";
+import { Input, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Box, Button, Paper, useTheme } from "@mui/material";
 import { LayoutBase } from "../../shared/layout";
-import { IVendedor, VendedorServices } from "../../shared/services/vendedor/VendedorServices";
 import AddIcon from '@mui/icons-material/Add';
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { IProdutos, ProdutosServices } from "../../shared/services/produtos/Produtos";

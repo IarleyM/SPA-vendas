@@ -1,7 +1,5 @@
-import { Environment } from "../../environment";
 import { Api } from "../apiConfig";
 import { ApiException } from "../ApiException";
-import { VendedorServices } from "../vendedor/VendedorServices";
 
 export interface IVendas {
     sellId: number,

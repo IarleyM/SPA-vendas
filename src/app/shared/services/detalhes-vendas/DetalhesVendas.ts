@@ -1,7 +1,5 @@
-import { Environment } from "../../environment";
 import { Api } from "../apiConfig";
 import { ApiException } from "../ApiException";
-import { VendedorServices } from "../vendedor/VendedorServices";
 
 export interface IVendasDetalhes {
     id: number,
@@ -14,7 +12,6 @@ const getAll = async (): Promise<IVendasDetalhes[] | ApiException> => {
     try {
         const UrlRelative = `/GetAllSellDetails`
         const { data } = await Api().get(UrlRelative);
-        console.log("Dt",data.sellDetail)
         return data.sellDetail;
     } catch (error) {
         return new ApiException("Erro ao buscar vendas");

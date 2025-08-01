@@ -16,7 +16,6 @@ import {
   useTheme,
 } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import AddIcon from "@mui/icons-material/Add";
 
 import { LayoutBase } from "../../shared/layout";
 import { ApiException } from "../../shared/services/ApiException";

@@ -1,4 +1,3 @@
-import { Environment } from "../../environment";
 import { Api } from "../apiConfig";
 import { ApiException } from "../ApiException";
 

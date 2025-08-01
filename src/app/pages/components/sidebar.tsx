@@ -1,4 +1,4 @@
-import { Button, Drawer, Icon, IconButton, Paper, useTheme } from "@mui/material"
+import { Button, Drawer, IconButton, useTheme } from "@mui/material"
 import { Box, useMediaQuery } from "@mui/system"
 import { useDrawerContext } from "../../shared/context";
 import MenuIcon from '@mui/icons-material/Menu';
