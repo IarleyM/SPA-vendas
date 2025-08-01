@@ -51,7 +51,7 @@ export const PainelVendas = () => {
         };
 
         buscarVendasFiltradas();
-    }, [pagadorBusca]);
+    }, [pagadorBusca, rows]);
 
 
     useEffect(() => {

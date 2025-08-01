@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { ApiException } from "../../shared/services/ApiException";
-import { Input, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Box, Button, Paper, useTheme, Icon } from "@mui/material";
+import { Input, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Box, Button, Paper, useTheme } from "@mui/material";
 import { LayoutBase } from "../../shared/layout";
 import { IVendedor, VendedorServices } from "../../shared/services/vendedor/VendedorServices";
 import AddIcon from '@mui/icons-material/Add';
@@ -9,14 +9,9 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 export const PainelVendedor = () => {
     const theme = useTheme();
     const [vendedor, setVendedor] = useState<IVendedor[]>([])
-    const [rows, setRows] = useState<IVendedor[]>([]);
     const navigate = useNavigate()
 
     const [SearchParams, setSearchParams] = useSearchParams()
-
-    const busca = useMemo(() => {
-        return SearchParams.get('busca') || ''
-    }, [])
 
     useEffect(() => {
         VendedorServices.getAll()
@@ -25,8 +20,6 @@ export const PainelVendedor = () => {
                     alert(response.message);
                 } else {
                     setVendedor(response);
-                    console.log(response);
-                    setRows(response);
                 }
             })
     }, [])
@@ -65,7 +58,7 @@ export const PainelVendedor = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.map((row) => (
+                            {vendedor.map((row) => (
                                 <TableRow key={row.sellerId}>
                                     <TableCell>{row.sellerId}</TableCell>
                                     <TableCell>{row.name}</TableCell>
