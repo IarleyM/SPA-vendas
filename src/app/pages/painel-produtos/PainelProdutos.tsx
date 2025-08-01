@@ -8,14 +8,13 @@ import { IProdutos, ProdutosServices } from "../../shared/services/produtos/Prod
 
 export const PainelProdutos = () => {
     const theme = useTheme();
-    const [produtos, setProdutos] = useState<IProdutos[]>([])
-    const navigate = useNavigate()
-
-    const [SearchParams, setSearchParams] = useSearchParams()
+    const [produtos, setProdutos] = useState<IProdutos[]>([]);
+    const navigate = useNavigate();
+    const [SearchParams] = useSearchParams();
 
     const busca = useMemo(() => {
-        return SearchParams.get('busca') || ''
-    }, [])
+        return SearchParams.get('busca') || '';
+    }, [SearchParams]);
 
     useEffect(() => {
         ProdutosServices.getAll()
@@ -25,8 +24,8 @@ export const PainelProdutos = () => {
                 } else {
                     setProdutos(response);
                 }
-            })
-    }, [])
+            });
+    }, []);
 
     return (
         <div>
@@ -41,7 +40,7 @@ export const PainelProdutos = () => {
                         display="flex" flexDirection="column" gap={1} marginBottom={1} width={1}>
                         <Input placeholder="Produto" sx={{ width: 150, height: 30 }}
                             onChange={(e) => {
-                                setSearchParams({ busca: e.target.value }, { replace: true });
+                                SearchParams.set('busca', e.target.value);
                             }} />
                     </Box>
                     <Button variant="contained" sx={{ width: 160, height: 30 }}>
@@ -76,5 +75,5 @@ export const PainelProdutos = () => {
                 </TableContainer>
             </LayoutBase>
         </div>
-    )
-}
+    );
+};
