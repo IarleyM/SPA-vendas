@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/SPA-vendas/static/js/main.945dac3b.js",
+    "main.js": "/SPA-vendas/static/js/main.74a0f581.js",
     "static/js/453.57d88a15.chunk.js": "/SPA-vendas/static/js/453.57d88a15.chunk.js",
     "index.html": "/SPA-vendas/index.html",
-    "main.945dac3b.js.map": "/SPA-vendas/static/js/main.945dac3b.js.map",
+    "main.74a0f581.js.map": "/SPA-vendas/static/js/main.74a0f581.js.map",
     "453.57d88a15.chunk.js.map": "/SPA-vendas/static/js/453.57d88a15.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.945dac3b.js"
+    "static/js/main.74a0f581.js"
   ]
 }
