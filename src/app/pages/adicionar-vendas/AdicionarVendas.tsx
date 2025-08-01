@@ -7,7 +7,7 @@ import { ApiException } from "../../shared/services/ApiException";
 import { IProdutos, ProdutosServices } from "../../shared/services/produtos/Produtos";
 import { IVendedor, VendedorServices } from "../../shared/services/vendedor/VendedorServices";
 import { LayoutBase } from "../../shared/layout";
-import { Api } from "../../shared/services/apiConfig"; // certifique-se que tem esse serviço configurado
+import { Api } from "../../shared/services/apiConfig"; 
 import { IRequestCreateVenda } from "../../shared/services/vendas/VendasServices";
 
 type ProdutoSelecionado = {
@@ -31,14 +31,12 @@ export const AdicionarVendas = () => {
     const [quantidade, setQuantidade] = useState<number>(1);
     const [itens, setItens] = useState<ProdutoSelecionado[]>([]);
 
-    // Buscar dados ao montar o componente
     useEffect(() => {
         PagadorServices.getAll().then(res => res instanceof ApiException ? alert(res.message) : setPagadores(res));
         ProdutosServices.getAll().then(res => res instanceof ApiException ? alert(res.message) : setProdutos(res));
         VendedorServices.getAll().then(res => res instanceof ApiException ? alert(res.message) : setVendedores(res));
     }, []);
 
-    // Adiciona item à lista
     const adicionarItem = () => {
         if (!produtoSelecionado || quantidade <= 0) return;
         setItens(old => [...old, { produto: produtoSelecionado, quantidade }]);
@@ -46,7 +44,6 @@ export const AdicionarVendas = () => {
         setQuantidade(1);
     };
 
-    // Função para salvar venda no backend
     const create = async (dataToCreate: IRequestCreateVenda): Promise<IRequestCreateVenda | ApiException> => {
         try {
             const { data } = await Api().post<any>('/AddNewSell', dataToCreate);
@@ -56,7 +53,6 @@ export const AdicionarVendas = () => {
         }
     };
 
-    // Submissão do formulário
     const onSubmit = async (data: FormData) => {
         if (!data.pagador || !data.vendedor) {
             alert("Selecione um pagador e um vendedor");
@@ -68,18 +64,15 @@ export const AdicionarVendas = () => {
             return;
         }
 
-        // Montar itemSells conforme o backend espera
         const itemSells = itens.map(item => ({
             quantity: item.quantidade,
-            unitValue: Number(item.produto.unitValue), // assumindo que o produto tem um campo price
+            unitValue: Number(item.produto.unitValue), 
             total: item.quantidade * Number(item.produto.unitValue),
             productId: item.produto.productId
         }));
 
-        // Calcular valor total
         const valorTotal = itemSells.reduce((acc, item) => acc + item.total, 0);
 
-        // Criar objeto no formato esperado pela API
         const venda: IRequestCreateVenda = {
             isPayed: false,
             value: valorTotal,
@@ -96,7 +89,7 @@ export const AdicionarVendas = () => {
             alert(response.message);
         } else {
             alert("Venda cadastrada com sucesso!");
-            setItens([]); // limpar os itens após salvar
+            setItens([]); 
         }
     };
 
@@ -105,7 +98,6 @@ export const AdicionarVendas = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Box display="flex" flexDirection="column" gap={2} maxWidth={400}>
 
-                    {/* SELEÇÃO DE VENDEDOR */}
                     <Controller
                         name="vendedor"
                         control={control}
@@ -123,7 +115,6 @@ export const AdicionarVendas = () => {
                         )}
                     />
 
-                    {/* SELEÇÃO DE PAGADOR */}
                     <Controller
                         name="pagador"
                         control={control}
@@ -152,7 +143,7 @@ export const AdicionarVendas = () => {
                                 getOptionLabel={(option) => option.name}
                                 onChange={(_, value) => {
                                     field.onChange(value);
-                                    setProdutoSelecionado(value); // ✅ ATUALIZA O ESTADO LOCAL
+                                    setProdutoSelecionado(value); 
                                 }}
                                 value={field.value}
                                 isOptionEqualToValue={(a, b) => a.productId === b?.productId}
@@ -161,7 +152,6 @@ export const AdicionarVendas = () => {
                         )}
                     />
 
-                    {/* QUANTIDADE */}
                     <TextField
                         label="Quantidade"
                         type="number"
@@ -169,12 +159,10 @@ export const AdicionarVendas = () => {
                         onChange={(e) => setQuantidade(parseInt(e.target.value))}
                     />
 
-                    {/* BOTÃO PARA ADICIONAR PRODUTO */}
                     <Button variant="outlined" onClick={adicionarItem}>
                         Adicionar Produto
                     </Button>
 
-                    {/* LISTA DE ITENS ADICIONADOS */}
                     {itens.length > 0 && (
                         <Box>
                             {itens.map((item, index) => (
@@ -186,7 +174,6 @@ export const AdicionarVendas = () => {
                         </Box>
                     )}
 
-                    {/* BOTÃO SALVAR */}
                     <Button type="submit" variant="contained" sx={{ width: 160, height: 30 }}>
                         Salvar<AddIcon sx={{ ml: 1 }} />
                     </Button>
