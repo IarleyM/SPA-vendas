@@ -3,16 +3,16 @@ import { Api } from "../apiConfig";
 import { ApiException } from "../ApiException";
 
 export interface IVendedor {
-    id: number,
+    sellerId: number,
     name: string;
     phone: string;
 }
 
 const getAll = async (page = 1): Promise<IVendedor[] | ApiException> => {
     try{
-        const UrlRelative = `/sellers?_paged=${page}&limit=${Environment.LIMITE_DE_LINHAS}`
+        const UrlRelative = `/seller/GetAllSeller?_paged=${page}&limit=${Environment.LIMITE_DE_LINHAS}`
         const { data } = await Api().get(UrlRelative);
-        return data;
+        return data.sellers;
     }catch (error) {
         return new ApiException("Erro ao buscar Vendedor");
     }
@@ -20,7 +20,7 @@ const getAll = async (page = 1): Promise<IVendedor[] | ApiException> => {
 
 const getById = async (id: number): Promise<IVendedor | ApiException> => {
     try {
-        const { data } = await Api().get(`/sellers/${id}`);
+        const { data } = await Api().get(`/seller/GetAllSeller/${id}`);
         return data;
     } catch (error) {
         return new ApiException(`Erro ao buscar venda com ID ${id}`);
@@ -29,7 +29,7 @@ const getById = async (id: number): Promise<IVendedor | ApiException> => {
 
 const getByName = async (Name: string): Promise<IVendedor[] | ApiException> => {
     try {
-        const { data } = await Api().get(`/sellers?name=${encodeURIComponent(Name)}`);
+        const { data } = await Api().get(`/seller/GetAllSeller?name=${encodeURIComponent(Name)}`);
         return data;
     } catch (error) {
         return new ApiException(`Erro ao buscar pelo nome ${Name}`);
@@ -38,7 +38,7 @@ const getByName = async (Name: string): Promise<IVendedor[] | ApiException> => {
 
 const create = async (dataToCreate: Omit<IVendedor, 'id'>): Promise<IVendedor | ApiException> => {
     try {
-        const { data } = await Api().post<any>('/sellers', dataToCreate);
+        const { data } = await Api().post<any>('/seller/GetAllSeller', dataToCreate);
         return data;
     } catch (error) {
         return new ApiException("Erro ao criar venda");
@@ -47,7 +47,7 @@ const create = async (dataToCreate: Omit<IVendedor, 'id'>): Promise<IVendedor | 
 
 const update = async (id: number, dataToUpdate: IVendedor ): Promise <IVendedor | ApiException> => {
     try {
-        const { data } = await Api().put(`/sellers/${id}`, dataToUpdate);
+        const { data } = await Api().put(`/seller/GetAllSeller/${id}`, dataToUpdate);
         return data;
     } catch (error) {
         return new ApiException(`Erro ao atualizar venda com ID ${id}`);
@@ -56,7 +56,7 @@ const update = async (id: number, dataToUpdate: IVendedor ): Promise <IVendedor 
 
 const remove = async (id: number): Promise<IVendedor | ApiException> => {
     try{
-        const { data } = await Api().delete(`/sellers/${id}`);
+        const { data } = await Api().delete(`/seller/GetAllSeller/${id}`);
         return data;
     }catch (error) {
         return new ApiException(`Erro ao remover venda com ID ${id}`);

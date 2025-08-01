@@ -4,7 +4,7 @@ import { ApiException } from "../ApiException";
 import { VendedorServices } from "../vendedor/VendedorServices";
 
 export interface IVendas {
-    id: number,
+    sellId: number,
     sellerId: number;
     isPayed: boolean;
     value: number;
@@ -12,14 +12,27 @@ export interface IVendas {
     payerId: number;
 }
 
+export interface IRequestCreateVenda {
+    isPayed: boolean;
+    value: number;
+    date: string;
+    payerId: number;
+    sellerId: number;
+    itemSells: {
+        quantity: number;
+        total: number;
+        unitValue: number;
+        productId: number;
+    }[];
+}
+    
+
 const getAll = async (page = 1, filter = ''): Promise<IVendas[] | ApiException> => {
     try{
-        const sellerName = await VendedorServices.getByName(filter)
-
-        console.log(sellerName)
-        const UrlRelative = `/sells?_paged=${page}&limit=${Environment.LIMITE_DE_LINHAS}&nomeCompleto_like=${filter}`
+        const UrlRelative = `/GetAllSells`
         const { data } = await Api().get(UrlRelative);
-        return data;
+        console.log("Vendas", data)
+        return Array.isArray(data.sell) ? data.sell : [];
     }catch (error) {
         return new ApiException("Erro ao buscar vendas");
     }
@@ -34,9 +47,9 @@ const getById = async (id: number): Promise<IVendas | ApiException> => {
     }
 }
 
-const create = async (dataToCreate: Omit<IVendas, 'id'>): Promise<IVendas | ApiException> => {
+const create = async (dataToCreate: Omit<IRequestCreateVenda, 'id'>): Promise<IRequestCreateVenda | ApiException> => {
     try {
-        const { data } = await Api().post<any>('/sells', dataToCreate);
+        const { data } = await Api().post<any>('/AddNewSell', dataToCreate);
         return data;
     } catch (error) {
         return new ApiException("Erro ao criar venda");

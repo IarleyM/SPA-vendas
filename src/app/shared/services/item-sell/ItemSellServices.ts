@@ -12,9 +12,9 @@ export interface IItemSell{
 
 const getAll = async (page = 1): Promise<IItemSell[] | ApiException> => {
     try{
-        const UrlRelative = `/itemSell?_paged=${page}&limit=${Environment.LIMITE_DE_LINHAS}`
+        const UrlRelative = `/GetAllItemSells?_paged=${page}&limit=${Environment.LIMITE_DE_LINHAS}`
         const { data } = await Api().get(UrlRelative);
-        return data;
+        return data.itemSell;
     }catch (error) {
         return new ApiException("Erro ao buscar Item de Venda");
     }

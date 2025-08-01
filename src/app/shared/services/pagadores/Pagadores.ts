@@ -1,19 +1,17 @@
-import { Environment } from "../../environment";
 import { Api } from "../apiConfig";
 import { ApiException } from "../ApiException";
 
 export interface IPagadores {
-    id: number,
+    payerId: number,
     name: string;
-    unitValue: string;
-    description?: string;
+    phone: string;
 }
 
-const getAll = async (page = 1): Promise<IPagadores[] | ApiException> => {
+const getAll = async (): Promise<IPagadores[] | ApiException> => {
     try{
-        const UrlRelative = `/payers?_paged=${page}&limit=${Environment.LIMITE_DE_LINHAS}`
+        const UrlRelative = `/GetAllPayer`
         const { data } = await Api().get(UrlRelative);
-        return data;
+        return data.payer;
     }catch (error) {
         return new ApiException("Erro ao buscar Pagador");
     }
@@ -21,19 +19,19 @@ const getAll = async (page = 1): Promise<IPagadores[] | ApiException> => {
 
 const getById = async (id: number): Promise<IPagadores | ApiException> => {
     try {
-        const { data } = await Api().get(`/payers/${id}`);
+        const { data } = await Api().get(`/GetAllPayer/${id}`);
         return data;
     } catch (error) {
         return new ApiException(`Erro ao buscar venda com ID ${id}`);
     }
 }
 
-const getByName = async (Name: string): Promise<IPagadores[] | ApiException> => {
+const getByName = async (Name: string): Promise<IPagadores[]> => {
     try {
-        const { data } = await Api().get(`/payers?name=${encodeURIComponent(Name)}`);
+        const { data } = await Api().get(`/GetPayerByName?payerName=${encodeURIComponent(Name)}`);
         return data;
-    } catch (error) {
-        return new ApiException(`Erro ao buscar pelo nome ${Name}`);
+    } catch (error: any) {
+        throw new ApiException(error.toString())
     }
 };
 

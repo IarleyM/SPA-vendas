@@ -17,5 +17,5 @@ export const Environment = {
   /**
    * Url base de consultado dos dados dessa aplicação
    */
-  URL_BASE: 'http://localhost:3003',
+  URL_BASE: 'https://sellmanager-production-c9c0.up.railway.app',
 };

@@ -57,7 +57,7 @@ export const PainelProdutos = () => {
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell>Id do Vendedor</TableCell>
+                                <TableCell>Id do Produtos</TableCell>
                                 <TableCell>Nome</TableCell>
                                 <TableCell>Preço Unitário</TableCell>
                                 <TableCell>Descrição</TableCell>
@@ -65,8 +65,8 @@ export const PainelProdutos = () => {
                         </TableHead>
                         <TableBody>
                             {produtos.map((row) => (
-                                <TableRow key={row.id}>
-                                    <TableCell>{row.id}</TableCell>
+                                <TableRow key={row.productId}>
+                                    <TableCell>{row.productId}</TableCell>
                                     <TableCell>{row.name}</TableCell>
                                     <TableCell>{row.unitValue}</TableCell>
                                     <TableCell>{row.description}</TableCell>

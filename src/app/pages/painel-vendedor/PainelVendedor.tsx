@@ -66,8 +66,8 @@ export const PainelVendedor = () => {
                         </TableHead>
                         <TableBody>
                             {rows.map((row) => (
-                                <TableRow key={row.id}>
-                                    <TableCell>{row.id}</TableCell>
+                                <TableRow key={row.sellerId}>
+                                    <TableCell>{row.sellerId}</TableCell>
                                     <TableCell>{row.name}</TableCell>
                                     <TableCell>{row.phone}</TableCell>
                                 </TableRow>

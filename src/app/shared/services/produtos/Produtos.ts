@@ -3,19 +3,29 @@ import { Api } from "../apiConfig";
 import { ApiException } from "../ApiException";
 
 export interface IProdutos {
-    id: number,
+    productId: number,
     name: string;
     unitValue: string;
     description?: string;
 }
 
-const getAll = async (page = 1): Promise<IProdutos[] | ApiException> => {
+const getAll = async (): Promise<IProdutos[] | ApiException> => {
     try{
-        const UrlRelative = `/products?_paged=${page}&limit=${Environment.LIMITE_DE_LINHAS}`
+        const UrlRelative = `/GetAllProduct`
         const { data } = await Api().get(UrlRelative);
-        return data;
+        return data.products;
     }catch (error) {
         return new ApiException("Erro ao buscar Pagador");
+    }
+}
+
+const GetProductBySell = async (id: number): Promise<IProdutos[] | ApiException> => {
+    try{
+        const UrlRelative = `/GetProductBySellId/${id}`
+        const { data } = await Api().get(UrlRelative);
+        return data;
+    }catch (error){
+        return new ApiException("Erro ao buscar Produtos Comprados")
     }
 }
 
@@ -68,6 +78,7 @@ export const ProdutosServices = {
     getAll,
     getById,
     getByName,
+    GetProductBySell,
     create,
     update,
     remove
