@@ -67,7 +67,7 @@ const remove = async (id: number): Promise<IVendas | ApiException> => {
         const { data } = await Api().delete(`/delete/${id}`);
         return data;
     }catch (error) {
-        return new ApiException(`Erro ao remover venda com ID ${id}`);
+        return new ApiException(`Erro ao remover venda com Id ${id}`);
     }
  }
 
