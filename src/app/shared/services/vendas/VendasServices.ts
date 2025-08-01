@@ -29,7 +29,6 @@ const getAll = async (page = 1, filter = ''): Promise<IVendas[] | ApiException> 
     try{
         const UrlRelative = `/GetAllSells`
         const { data } = await Api().get(UrlRelative);
-        console.log("Vendas", data)
         return Array.isArray(data.sell) ? data.sell : [];
     }catch (error) {
         return new ApiException("Erro ao buscar vendas");
@@ -65,7 +64,7 @@ const update = async (id: number, dataToUpdate: IVendas ): Promise <IVendas | Ap
 
 const remove = async (id: number): Promise<IVendas | ApiException> => {
     try{
-        const { data } = await Api().delete(`/sells/${id}`);
+        const { data } = await Api().delete(`/delete/${id}`);
         return data;
     }catch (error) {
         return new ApiException(`Erro ao remover venda com ID ${id}`);

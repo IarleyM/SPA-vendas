@@ -43,7 +43,6 @@ export const PainelVendas = () => {
                 }
 
                 setRows(vendasFiltradas);
-                console.log(rows)
                 setIsLoading(false);
             } catch (err) {
                 console.error(err);
@@ -61,7 +60,6 @@ export const PainelVendas = () => {
                 console.error("Erro ao carregar pagadores:", response.message);
                 setPagador([]);
             } else {
-                console.log("Pagadores carregados:", response);
                 setPagador(response);
             }
         };
