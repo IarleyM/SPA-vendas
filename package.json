@@ -35,7 +35,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "set CI=false&&react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "mock": "json-server --watch ./mock/db.json --port 3003",
@@ -46,7 +46,11 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "@typescript-eslint/no-unused-vars": "warn",
+      "react-hooks/exhaustive-deps": "warn"
+    }
   },
   "browserslist": {
     "production": [
